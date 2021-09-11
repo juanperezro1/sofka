@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,16 +8,22 @@ import 'package:prueba/src/models/question.dart';
 import 'package:prueba/src/repositories/quiz_repository.dart';
 import 'package:prueba/src/widgets/custom_bottom.dart';
 
-
 class QuizResults extends StatelessWidget {
   final QuizState state;
   final List<Question> questions;
 
-  const QuizResults({
+  QuizResults({
     Key? key,
     required this.state,
     required this.questions,
   }) : super(key: key);
+
+  final TextEditingController _textEditingController = TextEditingController();
+
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('scores');
+
+  String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,25 @@ class QuizResults extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
+        ),
+        TextField(
+          onChanged: (value) {
+            name = value;
+          },
+          // controller: _textEditingController,
+          // style: const TextStyle(fontSize: 22, color: Colors.black),
+          // decoration: const InputDecoration(
+          //   hintText: "Name",
+          //   hintStyle: TextStyle(fontSize: 22, color: Colors.black),
+          // ),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            await collectionReference
+                .add({'player': name, 'score': '2'}).then(
+                    (value) => _textEditingController.clear());
+          },
+          child: const Text('Save Score'),
         ),
         const SizedBox(height: 40.0),
         CustomButton(
