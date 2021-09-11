@@ -1,4 +1,4 @@
-
+import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 import 'package:prueba/src/models/question.dart';
 
@@ -39,16 +39,16 @@ class QuizState extends Equatable {
       ];
 
   QuizState copyWith({
-    required String selectedAnswer,
-    required List<Question> correct,
-    required List<Question> incorrect,
-    required QuizStatus status,
+    String? selectedAnswer,
+    List<Question>? correct,
+    List<Question>? incorrect,
+    QuizStatus? status,
   }) {
     return QuizState(
-      selectedAnswer: selectedAnswer,
-      correct: correct,
-      incorrect: incorrect,
-      status: status,
+      selectedAnswer: selectedAnswer ?? this.selectedAnswer,
+      correct: correct ?? this.correct,
+      incorrect: incorrect ?? this.incorrect,
+      status: status ?? this.status,
     );
   }
 }

@@ -3,9 +3,10 @@ import 'package:prueba/src/controllers/quiz_state.dart';
 import 'package:prueba/src/models/question.dart';
 
 
-final quizControllerProvider  =
+final quizControllerProvider =
     StateNotifierProvider.autoDispose<QuizController>(
-        (ref) => QuizController());
+  (ref) => QuizController(),
+);
 
 class QuizController extends StateNotifier<QuizState> {
   QuizController() : super(QuizState.initial());
@@ -16,13 +17,13 @@ class QuizController extends StateNotifier<QuizState> {
       state = state.copyWith(
         selectedAnswer: answer,
         correct: state.correct..add(currentQuestion),
-        status: QuizStatus.correct, incorrect: [],
+        status: QuizStatus.correct,
       );
     } else {
       state = state.copyWith(
         selectedAnswer: answer,
         incorrect: state.incorrect..add(currentQuestion),
-        status: QuizStatus.incorrect, correct: [],
+        status: QuizStatus.incorrect,
       );
     }
   }
@@ -32,7 +33,7 @@ class QuizController extends StateNotifier<QuizState> {
       selectedAnswer: '',
       status: currentIndex + 1 < questions.length
           ? QuizStatus.initial
-          : QuizStatus.complete, correct: [], incorrect: [],
+          : QuizStatus.complete,
     );
   }
 

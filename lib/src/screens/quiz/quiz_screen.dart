@@ -20,7 +20,7 @@ class QuizScreen extends HookWidget  {
 
   final quizQuestionsProvider = FutureProvider.autoDispose<List<Question>>(
     (ref) => ref.watch(quizRepositoryProvider).getQuestions(
-          numQuestions: 5,
+          numQuestions: 25,
           categoryId: Random().nextInt(24) + 9,
           difficulty: Difficulty.any,
         ),
@@ -72,7 +72,6 @@ class QuizScreen extends HookWidget  {
     List<Question> questions,
   ) {
     if (questions.isEmpty) return const QuizError(message: 'No questions found.');
-    //.state
     final quizState = useProvider(quizControllerProvider.state);
     return quizState.status == QuizStatus.complete
         ? QuizResults(state: quizState, questions: questions)

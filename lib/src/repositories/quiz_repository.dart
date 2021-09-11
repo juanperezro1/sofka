@@ -55,11 +55,9 @@ class QuizRepository extends BaseQuizRepository {
       throw Failure(
         message: err.response?.statusMessage ?? 'Something went wrong!',
       );
-    // ignore: nullable_type_in_catch_clause
     } on SocketException catch (err) {
       print(err);
       throw const Failure(message: 'Please check your connection.');
     }
   }
 }
-
