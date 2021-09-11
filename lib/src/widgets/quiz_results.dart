@@ -6,7 +6,9 @@ import 'package:prueba/src/controllers/quiz_controller.dart';
 import 'package:prueba/src/controllers/quiz_state.dart';
 import 'package:prueba/src/models/question.dart';
 import 'package:prueba/src/repositories/quiz_repository.dart';
+import 'package:prueba/src/screens/score/score_screen.dart';
 import 'package:prueba/src/widgets/custom_bottom.dart';
+import 'package:prueba/src/widgets/custom_textfield.dart';
 
 class QuizResults extends StatelessWidget {
   final QuizState state;
@@ -46,24 +48,29 @@ class QuizResults extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        TextField(
-          controller: _textEditingController,
-          style: const TextStyle(fontSize: 22, color: Colors.black),
-          decoration: const InputDecoration(
-            hintText: "Name",
-            hintStyle: TextStyle(fontSize: 22, color: Colors.black),
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () async {
+        const SizedBox(height: 80),
+        CustomTextField(textEditingController: _textEditingController),
+        const SizedBox(height: 30),
+        CustomButton(
+          title: 'Save Score',
+          onTap: () async {
             await collectionReference.add({
               'player': _textEditingController.text,
               'score': state.correct.length
             }).then((value) => _textEditingController.clear());
           },
-          child: const Text('Save Score'),
         ),
-        const SizedBox(height: 40.0),
+        const SizedBox(height: 10),
+        CustomButton(
+          title: 'Player Scores',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ScoreScreen()),
+            );
+          },
+        ),
+        const SizedBox(height: 10),
         CustomButton(
           title: 'New Quiz',
           onTap: () {
@@ -75,3 +82,5 @@ class QuizResults extends StatelessWidget {
     );
   }
 }
+
+

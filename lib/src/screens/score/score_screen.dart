@@ -1,39 +1,57 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:prueba/src/databasemanager/data_base_manager.dart';
+import 'package:prueba/src/utils/constants.dart';
 
-class ScoreScreen extends StatelessWidget {
-  ScoreScreen({Key? key}) : super(key: key);
+class ScoreScreen extends StatefulWidget {
+  const ScoreScreen({Key? key}) : super(key: key);
 
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('scores');
+  @override
+  State<ScoreScreen> createState() => _ScoreScreenState();
+}
+
+class _ScoreScreenState extends State<ScoreScreen> {
+  List scoreList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDatabaseList();
+  }
+
+  fetchDatabaseList() async {
+    dynamic resultant = await DataBaseManager().getScorePlayers();
+
+    if (resultant == null) {
+      print('Unable t retrieve');
+    } else {
+      setState(() {
+        scoreList = resultant;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: StreamBuilder(
-            stream: collectionReference.snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasData) {
-                return ListView(
-                  children: snapshot.data!.docs
-                      .map((e) => Column(
-                            children: [
-                              ListTile(
-                                title: Text(e['player']),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.6),
-                                thickness: 2,
-                              )
-                            ],
-                          ))
-                      .toList(),
-                );
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        body: Column(children: [
+      SizedBox(height: size.height * 0.1,),
+      const Text(
+        "Player Scors",
+        style: TextStyle(fontSize: 40, fontFamily: 'Sofia Pro', color: kPrimaryColor),
+      ),
+      Expanded(
+        child: ListView.builder(
+            itemCount: scoreList.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                  title: Text(scoreList[index]['player']),
+                  trailing: Text('Score ' '${scoreList[index]['score']}'),
+                ),
               );
-            }));
+            }),
+      )
+    ]));
   }
 }
