@@ -19,4 +19,8 @@ class DataBaseManager {
       return null;
     }
   }
+
+  Future<void> addScorePlayer (String player, String score) async {
+    await collectionReference.add({'player': player, 'score': score});
+  }
 }
