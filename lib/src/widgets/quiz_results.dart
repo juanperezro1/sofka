@@ -19,11 +19,8 @@ class QuizResults extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController _textEditingController = TextEditingController();
-
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('scores');
-
-  String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -50,21 +47,19 @@ class QuizResults extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         TextField(
-          onChanged: (value) {
-            name = value;
-          },
-          // controller: _textEditingController,
-          // style: const TextStyle(fontSize: 22, color: Colors.black),
-          // decoration: const InputDecoration(
-          //   hintText: "Name",
-          //   hintStyle: TextStyle(fontSize: 22, color: Colors.black),
-          // ),
+          controller: _textEditingController,
+          style: const TextStyle(fontSize: 22, color: Colors.black),
+          decoration: const InputDecoration(
+            hintText: "Name",
+            hintStyle: TextStyle(fontSize: 22, color: Colors.black),
+          ),
         ),
         ElevatedButton(
           onPressed: () async {
-            await collectionReference
-                .add({'player': name, 'score': '2'}).then(
-                    (value) => _textEditingController.clear());
+            await collectionReference.add({
+              'player': _textEditingController.text,
+              'score': state.correct.length
+            }).then((value) => _textEditingController.clear());
           },
           child: const Text('Save Score'),
         ),

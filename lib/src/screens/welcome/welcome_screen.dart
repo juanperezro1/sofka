@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prueba/src/screens/quiz/quiz_screen.dart';
+import 'package:prueba/src/screens/score/score_screen.dart';
 import 'package:prueba/src/screens/welcome/widgets/custom_bottom.dart';
 import 'package:prueba/src/utils/constants.dart';
 
@@ -40,7 +41,20 @@ class WelcomeScreen extends StatelessWidget {
                       },
                       text: const Text(
                         'Start',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, fontFamily: 'Sofia Pro'),
+                      )),
+                  const SizedBox(height: 20,),
+                  CustomBottom(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ScoreScreen()),
+                        );
+                      },
+                      text: const Text(
+                        'Score',
+                        style: TextStyle(color: Colors.white, fontFamily: 'Sofia Pro'),
                       )),
                   const Spacer(flex: 2), // it will take 2/6 spaces
                 ],
