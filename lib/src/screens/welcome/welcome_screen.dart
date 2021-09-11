@@ -43,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                         'Start',
                         style: TextStyle(color: Colors.white, fontFamily: 'Sofia Pro'),
                       )),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 50,),
                   CustomBottom(
                       onPressed: () {
                         Navigator.push(
