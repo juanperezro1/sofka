@@ -8,7 +8,7 @@ Trivia API Link: https://opentdb.com/api_config.php
 
 ## Screenshots
 
-![alt text](https://firebasestorage.googleapis.com/v0/b/quiz-app-sofka.appspot.com/o/Screenshot_2021-09-11-20-12-11-767_com.example.prueba.png?alt=media&token=f0b4027b-b967-4bcd-acf5-61deed369763)
+![alt text](https://firebasestorage.googleapis.com/v0/b/quiz-app-sofka.appspot.com/o/1.png?alt=media&token=814baf9e-2aa1-46eb-946b-80e6a8c12fa8)
 ![alt text](https://firebasestorage.googleapis.com/v0/b/quiz-app-sofka.appspot.com/o/Screenshot_2021-09-11-20-12-28-125_com.example.prueba.png?alt=media&token=a98d3300-7e78-4069-a05a-4c04c6759bbb)
 ![alt text](https://firebasestorage.googleapis.com/v0/b/quiz-app-sofka.appspot.com/o/Screenshot_2021-09-11-20-13-11-061_com.example.prueba.png?alt=media&token=4e52b3ed-8c79-4460-bf00-b9c52042e2f8)
 ![alt text](https://firebasestorage.googleapis.com/v0/b/quiz-app-sofka.appspot.com/o/Screenshot_2021-09-11-20-13-37-377_com.example.prueba.png?alt=media&token=7426c7dc-ef3d-4f38-8e82-4bcd561f33a9)
