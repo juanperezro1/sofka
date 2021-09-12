@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:prueba/src/controllers/quiz_state.dart';
@@ -13,6 +14,8 @@ class QuizController extends StateNotifier<QuizState> {
   QuizController() : super(QuizState.initial());
 
   void submitAnswer(Question currentQuestion, String answer) {
+    late Timer _timer;
+    
     if (state.answered) return;
     if (currentQuestion.correctAnswer == answer) {
       state = state.copyWith(
@@ -24,8 +27,15 @@ class QuizController extends StateNotifier<QuizState> {
       state = state.copyWith(
         selectedAnswer: answer,
         incorrect: state.incorrect..add(currentQuestion),
-        status: QuizStatus.complete,
+        status: QuizStatus.incorrect,
       );
+
+      _timer = Timer(const Duration(milliseconds: 300), () {
+        state = state.copyWith(
+            selectedAnswer: answer,
+            incorrect: state.incorrect..add(currentQuestion),
+            status: QuizStatus.complete);
+      });
     }
   }
 
@@ -42,4 +52,3 @@ class QuizController extends StateNotifier<QuizState> {
     state = QuizState.initial();
   }
 }
-
