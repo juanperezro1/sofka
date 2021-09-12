@@ -10,6 +10,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -19,8 +20,9 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(height: size.height * 0.1,),
                   SvgPicture.asset(
-                    'assets/images/sofka-logo.svg',
+                    'assets/images/sofka.svg',
                     height: 130,
                   ),
                   const SizedBox(
