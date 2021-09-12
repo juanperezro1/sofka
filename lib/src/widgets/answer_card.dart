@@ -34,7 +34,6 @@ class AnswerCard extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
-          // boxShadow: boxShadow,
           border: Border.all(
             color: isDisplayingAnswer
                 ? isCorrect

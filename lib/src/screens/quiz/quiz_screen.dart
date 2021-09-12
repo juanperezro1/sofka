@@ -20,7 +20,7 @@ class QuizScreen extends HookWidget  {
 
   final quizQuestionsProvider = FutureProvider.autoDispose<List<Question>>(
     (ref) => ref.watch(quizRepositoryProvider).getQuestions(
-          numQuestions: 25,
+          numQuestions: 1,
           categoryId: Random().nextInt(24) + 9,
           difficulty: Difficulty.any,
         ),

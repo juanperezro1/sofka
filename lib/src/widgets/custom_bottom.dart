@@ -20,14 +20,6 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.yellow[700],
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
           borderRadius: BorderRadius.circular(25.0),
         ),
         alignment: Alignment.center,
@@ -36,7 +28,7 @@ class CustomButton extends StatelessWidget {
           style: const TextStyle(
             color: Colors.white,
             fontSize: 18.0,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

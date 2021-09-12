@@ -37,7 +37,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
         body: Column(children: [
       SizedBox(height: size.height * 0.1,),
       const Text(
-        "Player Scors",
+        "Player Scores",
         style: TextStyle(fontSize: 40, fontFamily: 'Sofia Pro', color: kPrimaryColor),
       ),
       Expanded(

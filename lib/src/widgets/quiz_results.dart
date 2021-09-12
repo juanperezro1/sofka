@@ -29,7 +29,7 @@ class QuizResults extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      padding: EdgeInsets.only(top: size.height * 0.1),
+      padding: EdgeInsets.only(left:20,right: 20, top: 70),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
