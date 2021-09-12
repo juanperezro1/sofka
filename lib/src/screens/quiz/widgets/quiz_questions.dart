@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 import 'package:prueba/src/controllers/quiz_controller.dart';
 import 'package:prueba/src/controllers/quiz_state.dart';
-import 'package:prueba/src/models/question.dart';
 import 'package:html_character_entities/html_character_entities.dart';
-import 'package:prueba/src/widgets/answer_card.dart';
+
+import 'package:prueba/src/models/question.dart';
+import 'package:prueba/src/screens/quiz/widgets/answer_card.dart';
+
 
 class QuizQuestions extends StatelessWidget {
   final PageController pageController;

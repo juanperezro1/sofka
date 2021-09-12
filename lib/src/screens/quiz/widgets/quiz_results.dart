@@ -1,14 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:prueba/src/controllers/quiz_controller.dart';
 import 'package:prueba/src/controllers/quiz_state.dart';
 import 'package:prueba/src/databasemanager/data_base_manager.dart';
 import 'package:prueba/src/models/question.dart';
 import 'package:prueba/src/repositories/quiz_repository.dart';
 import 'package:prueba/src/screens/score/score_screen.dart';
-import 'package:prueba/src/widgets/custom_bottom.dart';
+import 'package:prueba/src/utils/constants.dart';
+import 'package:prueba/src/widgets/custom_botton.dart';
 import 'package:prueba/src/widgets/custom_textfield.dart';
 
 class QuizResults extends StatelessWidget {
@@ -27,9 +28,8 @@ class QuizResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left:20,right: 20, top: 70),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,6 +40,7 @@ class QuizResults extends StatelessWidget {
               color: Colors.white,
               fontSize: 60.0,
               fontWeight: FontWeight.w600,
+              fontFamily: 'Sofia Pro'
             ),
             textAlign: TextAlign.center,
           ),
@@ -49,6 +50,7 @@ class QuizResults extends StatelessWidget {
               color: Colors.white,
               fontSize: 48.0,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Sofia Pro'
             ),
             textAlign: TextAlign.center,
           ),
@@ -62,7 +64,7 @@ class QuizResults extends StatelessWidget {
                   .addScorePlayer(_textEditingController.text,
                       state.correct.length.toString())
                   .then((value) => _textEditingController.clear());
-            },
+            }, color: kSecondaryColor,
           ),
           const SizedBox(height: 10),
           CustomButton(
@@ -72,7 +74,7 @@ class QuizResults extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => const ScoreScreen()),
               );
-            },
+            }, color: kSecondaryColor,
           ),
           const SizedBox(height: 10),
           CustomButton(
@@ -80,7 +82,7 @@ class QuizResults extends StatelessWidget {
             onTap: () {
               context.refresh(quizRepositoryProvider);
               context.read(quizControllerProvider).reset();
-            },
+            }, color: kSecondaryColor,
           ),
         ],
       ),

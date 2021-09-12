@@ -22,7 +22,6 @@ class _ScoreScreenState extends State<ScoreScreen> {
     dynamic resultant = await DataBaseManager().getScorePlayers();
 
     if (resultant == null) {
-      print('Unable t retrieve');
     } else {
       setState(() {
         scoreList = resultant;
@@ -33,25 +32,35 @@ class _ScoreScreenState extends State<ScoreScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        body: Column(children: [
-      SizedBox(height: size.height * 0.1,),
-      const Text(
-        "Player Scores",
-        style: TextStyle(fontSize: 40, fontFamily: 'Sofia Pro', color: kPrimaryColor),
+    if (scoreList.isNotEmpty) {
+      return Scaffold(
+          body: Column(children: [
+        SizedBox(
+          height: size.height * 0.1,
+        ),
+        const Text(
+          "Player Scores",
+          style: TextStyle(
+              fontSize: 40, fontFamily: 'Sofia Pro', color: kPrimaryColor),
+        ),
+        Expanded(
+          child: ListView.builder(
+              itemCount: scoreList.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(scoreList[index]['player']),
+                    trailing: Text('Score ' '${scoreList[index]['score']}'),
+                  ),
+                );
+              }),
+        )
+      ]));
+    }
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
-      Expanded(
-        child: ListView.builder(
-            itemCount: scoreList.length,
-            itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  title: Text(scoreList[index]['player']),
-                  trailing: Text('Score ' '${scoreList[index]['score']}'),
-                ),
-              );
-            }),
-      )
-    ]));
+    );
   }
 }

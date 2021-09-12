@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:prueba/src/controllers/quiz_state.dart';
 import 'package:prueba/src/models/question.dart';
 
@@ -23,7 +24,7 @@ class QuizController extends StateNotifier<QuizState> {
       state = state.copyWith(
         selectedAnswer: answer,
         incorrect: state.incorrect..add(currentQuestion),
-        status: QuizStatus.incorrect,
+        status: QuizStatus.complete,
       );
     }
   }

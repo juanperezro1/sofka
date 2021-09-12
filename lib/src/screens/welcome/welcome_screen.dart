@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:prueba/src/screens/quiz/quiz_screen.dart';
 import 'package:prueba/src/screens/score/score_screen.dart';
-import 'package:prueba/src/screens/welcome/widgets/custom_bottom.dart';
 import 'package:prueba/src/utils/constants.dart';
+import 'package:prueba/src/widgets/custom_botton.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -20,7 +21,9 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: size.height * 0.1,),
+                  SizedBox(
+                    height: size.height * 0.1,
+                  ),
                   SvgPicture.asset(
                     'assets/images/sofka.svg',
                     height: 130,
@@ -32,33 +35,30 @@ class WelcomeScreen extends StatelessWidget {
                     "Quiz App",
                     style: TextStyle(fontSize: 40, fontFamily: 'Sofia Pro'),
                   ),
-                  const Spacer(), // 1/6
-                  CustomBottom(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => QuizScreen()),
-                        );
-                      },
-                      text: const Text(
-                        'Start',
-                        style: TextStyle(color: Colors.white, fontFamily: 'Sofia Pro'),
-                      )),
-                  const SizedBox(height: 50,),
-                  CustomBottom(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ScoreScreen()),
-                        );
-                      },
-                      text: const Text(
-                        'Score',
-                        style: TextStyle(color: Colors.white, fontFamily: 'Sofia Pro'),
-                      )),
-                  const Spacer(flex: 2), // it will take 2/6 spaces
+                  const Spacer(),
+                  CustomButton(
+                    title: 'Start',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QuizScreen()),
+                      );
+                    }, color: kPrimaryColor,
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  CustomButton(
+                    title: 'Player Score',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ScoreScreen()),
+                      );
+                    }, color: kSecondaryColor,
+                  ),
+                  const Spacer(flex: 2),
                 ],
               ),
             ),

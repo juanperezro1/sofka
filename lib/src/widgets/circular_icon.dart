@@ -18,7 +18,6 @@ class CircularIcon extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        // boxShadow: boxShadow,
       ),
       child: Icon(
         icon,
